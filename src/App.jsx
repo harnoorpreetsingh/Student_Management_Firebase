@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import MiniDrawer from "./components/pages/MiniDrawer";
-import { AddStudent } from "./components/pages/AddStudent";
+import { AddStudent } from "./components/pages/students/AddStudent";
 import Home from "./components/pages/Home";
 import NotFound from "./components/pages/NotFound";
-import AllStudents from "./components/pages/AllStudents";
+import AllStudents from "./components/pages/students/AllStudents";
+import AllFaculty from "./components/pages/faculty/AllFaculty";
+import UpdateFaculty from "./components/pages/faculty/UpdateFaculty";
+import AddFaculty from "./components/pages/faculty/AddFaculty";
 import SignUp from "./components/pages/SignUp";
 import Login from "./components/pages/Login";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./components/firebase/config";
-import UpdateStudent from "./components/pages/UpdateStudent";
+import UpdateStudent from "./components/pages/students/UpdateStudent";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -51,6 +54,9 @@ function App() {
           <Route path="addstudent" element={<AddStudent />} />
           <Route path="allstudents" element={<AllStudents />} />
           <Route path="updatestudent" element={<UpdateStudent />} />
+          <Route path="addfaculty" element={<AddFaculty />} />
+          <Route path="allfaculty" element={<AllFaculty />} />
+          <Route path="updatefaculty" element={<UpdateFaculty />} />
         </Route>
       </Routes>
     </>

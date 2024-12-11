@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getDatabase, onValue, ref, remove } from "firebase/database";
-import app from "../firebase/config";
+import app from "../../firebase/config";
 // card components
 import * as React from "react";
 import Card from "@mui/material/Card";
@@ -16,7 +16,7 @@ const AllStudents = () => {
   const [students, setStudents] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate()  
 
   useEffect(() => {
     const db = getDatabase(app);

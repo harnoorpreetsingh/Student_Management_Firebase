@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { getDatabase, ref, set } from "firebase/database";
-import app from "../firebase/config"
+import app from "../../firebase/config"
 import { useNavigate } from "react-router-dom";
 
 
