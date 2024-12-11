@@ -10,6 +10,7 @@ import Login from "./components/pages/Login";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./components/firebase/config";
+import UpdateStudent from "./components/pages/UpdateStudent";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -49,6 +50,7 @@ function App() {
           <Route index element={<div>Dashboard Home</div>} /> {/* Optional home for dashboard */}
           <Route path="addstudent" element={<AddStudent />} />
           <Route path="allstudents" element={<AllStudents />} />
+          <Route path="updatestudent" element={<UpdateStudent />} />
         </Route>
       </Routes>
     </>

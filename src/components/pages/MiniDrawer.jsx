@@ -11,7 +11,6 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -87,8 +86,15 @@ export default function MiniDrawer({ user }) {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
-  const handleDrawerOpen = () => setOpen(true);
-  const handleDrawerClose = () => setOpen(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+    console.log("Drawer opened");
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+    console.log("Drawer closed");
+  };
 
   const handleSignOut = () => {
     signOut(auth)
@@ -104,8 +110,9 @@ export default function MiniDrawer({ user }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
+      <AppBar position="fixed" className="" open={open}>
+        <Toolbar className="flex justify-between">
+          <div className="hamburgericon flex items-center">
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -115,11 +122,14 @@ export default function MiniDrawer({ user }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Student Management
+          <Typography className="text-start" variant="h6" noWrap>
+            Student Management System
           </Typography>
+          </div>
+         
 
           {/* Display user details */}
+          <div className="userdet flex gap-8 items-center">
           {user ? (
             <Typography variant="body1" sx={{ marginLeft: 2 }}>
               Hello, {user.email}
@@ -131,19 +141,17 @@ export default function MiniDrawer({ user }) {
           )}
 
           {/* Log Out Button */}
-          <button onClick={handleSignOut} className="bg-red-600 p-4 rounded-xl">
+          <button onClick={handleSignOut} className="bg-red-600 p-3 rounded-xl">
             Log Out
           </button>
+          </div>
+         
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
+            <ChevronLeftIcon />
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -178,7 +186,7 @@ export default function MiniDrawer({ user }) {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "64px" }}>
         <DrawerHeader />
         <Outlet />
       </Box>

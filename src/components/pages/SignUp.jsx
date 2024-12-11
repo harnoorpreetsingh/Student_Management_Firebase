@@ -14,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 const SignUp = () => {
   const Provider = new GoogleAuthProvider();
   const navigate = useNavigate()
+  
   function signInGoogle() {
     signInWithPopup(auth, Provider);
   }
