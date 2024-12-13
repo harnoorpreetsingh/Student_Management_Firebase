@@ -15,10 +15,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import ContactsIcon from "@mui/icons-material/Contacts";
+// import ContactsIcon from "@mui/icons-material/Contacts";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/config";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import PeopleIcon from "@mui/icons-material/People";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import LogoutIcon from "@mui/icons-material/Logout";
+import OtherHousesIcon from "@mui/icons-material/OtherHouses";
 
 const drawerWidth = 240;
 
@@ -61,11 +66,6 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const navOptions = [
-  { id: 1, link: "All Students", path: "/dashboard/allstudents" },
-  { id: 2, link: "Add Student", path: "/dashboard/addstudent" },
-];
-
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -97,6 +97,7 @@ export default function MiniDrawer({ user }) {
   };
 
   const handleSignOut = () => {
+    // console.log(navOptions[5].handleLogout, "hhhhhhhhhhhhhhhhh");
     signOut(auth)
       .then(() => {
         console.log("Successfully signed out");
@@ -107,45 +108,80 @@ export default function MiniDrawer({ user }) {
       });
   };
 
+  const navOptions = [
+    { id: 1, link: "Home", path: "/dashboard/", icon: <OtherHousesIcon /> },
+    {
+      id: 2,
+      link: "All Students",
+      path: "/dashboard/allstudents",
+      icon: <PeopleIcon />,
+    },
+    {
+      id: 3,
+      link: "Add Student",
+      path: "/dashboard/addstudent",
+      icon: <PersonAddAlt1Icon />,
+    },
+    {
+      id: 4,
+      link: "All Faculty",
+      path: "/dashboard/allfaculty",
+      icon: <PeopleIcon />,
+    },
+    {
+      id: 5,
+      link: "Add Faculty",
+      path: "/dashboard/addfaculty",
+      icon: <PersonAddIcon />,
+    },
+    {
+      id: 6,
+      link: "Logout",
+      icon: <LogoutIcon />,
+      functionToCall:  handleSignOut ,
+    },
+
+  ];
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" className="" open={open}>
         <Toolbar className="flex justify-between">
           <div className="hamburgericon flex items-center">
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ marginRight: 5, ...(open && { display: "none" }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className="text-start" variant="h6" noWrap>
-            Student Management System
-          </Typography>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ marginRight: 5, ...(open && { display: "none" }) }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography className="text-start" variant="h6" noWrap>
+              Institute Management
+            </Typography>
           </div>
-         
 
           {/* Display user details */}
           <div className="userdet flex gap-8 items-center">
-          {user ? (
-            <Typography variant="body1" sx={{ marginLeft: 2 }}>
-              Hello, {user.email}
-            </Typography>
-          ) : (
-            <Typography variant="body1" sx={{ marginLeft: 2 }}>
-              Not Logged In
-            </Typography>
-          )}
+            {user ? (
+              <Typography variant="body1" sx={{ marginLeft: 2 }}>
+                Hello, {user.email}
+              </Typography>
+            ) : (
+              <Typography variant="body1" sx={{ marginLeft: 2 }}>
+                Not Logged In
+              </Typography>
+            )}
 
-          {/* Log Out Button */}
-          <button onClick={handleSignOut} className="bg-red-600 p-3 rounded-xl">
-            Log Out
-          </button>
+            {/* Log Out Button */}
+            <button
+              onClick={handleSignOut}
+              className="bg-red-600 p-3 rounded-xl"
+            >
+              Log Out
+            </button>
           </div>
-         
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -165,6 +201,7 @@ export default function MiniDrawer({ user }) {
                     open && { justifyContent: "initial" },
                     !open && { justifyContent: "center" },
                   ]}
+                  onClick={text.functionToCall}
                 >
                   <ListItemIcon
                     sx={{
@@ -173,11 +210,12 @@ export default function MiniDrawer({ user }) {
                       ...(open && { mr: 3 }),
                     }}
                   >
-                    <ContactsIcon />
+                    {text?.icon}
                   </ListItemIcon>
                   <ListItemText
                     primary={text.link}
                     sx={{ ...(open ? { opacity: 1 } : { opacity: 0 }) }}
+                   
                   />
                 </ListItemButton>
               </NavLink>

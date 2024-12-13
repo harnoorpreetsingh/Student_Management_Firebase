@@ -14,6 +14,8 @@ import Login from "./components/pages/Login";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./components/firebase/config";
 import UpdateStudent from "./components/pages/students/UpdateStudent";
+import DashHome from "./components/pages/DashHome";
+import Logout from "./components/pages/Logout";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -50,13 +52,14 @@ function App() {
       {/* Dashboard Routes (MiniDrawer layout) */}
       <Routes>
         <Route path="/dashboard/*" element={<MiniDrawer user={user} />}>
-          <Route index element={<div>Dashboard Home</div>} /> {/* Optional home for dashboard */}
+          <Route index element={<DashHome />} />
           <Route path="addstudent" element={<AddStudent />} />
           <Route path="allstudents" element={<AllStudents />} />
           <Route path="updatestudent" element={<UpdateStudent />} />
           <Route path="addfaculty" element={<AddFaculty />} />
           <Route path="allfaculty" element={<AllFaculty />} />
           <Route path="updatefaculty" element={<UpdateFaculty />} />
+          <Route path="logout" element={<Logout />} />
         </Route>
       </Routes>
     </>
