@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Image from "/home.jpg";
 import backgroundImage from "/bgg.jpg";
+import logo from "../../../src/assets/logo.png";
+
 
 const Home = () => {
   const navigate = useNavigate()
@@ -29,6 +31,8 @@ const Home = () => {
           
           <div className="  max-w-[1022px]  ">
             <div className="backdrop-blur-2 backdrop-saturate-200 bg-[rgba(192,195,206,0.62)] border border-white/10 rounded-2xl p-6  w-[1022px]">
+                               <img src={logo} className="rounded-3xl w-[60px] mb-4 mx-auto" alt="logo" />
+              
               <h3 className="text-blue-800 text-2xl font-bold ">
                 Welcome to Institute Management!
               </h3>

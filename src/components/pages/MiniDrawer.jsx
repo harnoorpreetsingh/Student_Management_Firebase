@@ -26,6 +26,8 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LogoutIcon from "@mui/icons-material/Logout";
 import OtherHousesIcon from "@mui/icons-material/OtherHouses";
 // import AppBar from "@mui/material/AppBar";
+import logo from "../../../src/assets/logo.png";
+
 
 const drawerWidth = 240;
 
@@ -185,7 +187,11 @@ export default function MiniDrawer({ user }) {
               <MenuIcon />
             </IconButton>
             <Typography className="text-start" variant="h6" noWrap>
+                        <div className="flex items-center justify-center content-center gap-2 ">
+                                 <img src={logo} className="rounded-3xl w-[42px] mx-auto" alt="logo" />
+              
               Institute Management
+                        </div>
             </Typography>
           </div>
 

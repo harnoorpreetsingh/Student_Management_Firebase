@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Image from "/18.jpg";
+import logo from "../../../src/assets/logo.png";
+
 
 const DashHome = () => {
   const navigate = useNavigate()
@@ -28,6 +30,7 @@ const DashHome = () => {
           <div className="w-[100%] flex justify-center p-2  h-[100vh]">
             <div className="  max-w-[1022px]  mt-12">
               <div className="backdrop-blur-2 backdrop-saturate-200 bg-[rgba(215,218,231,0.62)] border border-white/10 rounded-2xl p-6  w-[1022px]">
+                 <img src={logo} className="rounded-3xl w-[60px] mb-4 mx-auto" alt="logo" />
                 <h3 className="text-blue-800 text-3xl font-bold ">
                   Welcome to the Institute Management System!{" "}
                 </h3>
