@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import app from "../../firebase/config";  // Make sure app is correctly imported from your firebase config
+import fm from "/form2.png"
 
 const AddFaculty = () => {
   const [regno, setRegNo] = useState(null);
@@ -77,10 +78,11 @@ const AddFaculty = () => {
 
   return (
     <>
+      <div className="grid grid-cols-2 mx-40 h-[75vh] justify-center items-center border border-black my-16 p-4">
       <div>
-        <h1 className="text-2xl font-bold">Add Faculty:</h1>
+        <h1 className="text-2xl text-blue-500 text-center font-bold">Add Faculty:</h1>
 
-        <div className="flex items-center justify-center flex-col gap-12 mt-12">
+        <div className="flex  items-center text-center justify-center flex-col gap-12 mt-12">
           <TextField
             id="outlined-number"
             label="Registration No"
@@ -138,13 +140,18 @@ const AddFaculty = () => {
 
           <Button
             variant="outlined"
-            className="hover:bg-blue-600 hover:text-white"
+            className="hover:bg-blue-600 !shadow-2xl !shadow-blue-600 hover:text-white"
             size="large"
             onClick={addFaculty}
           >
             Add Faculty
           </Button>
         </div>
+      </div>
+        <div className="img">
+          <img src={fm} alt=""  />
+        </div>
+       
       </div>
     </>
   );

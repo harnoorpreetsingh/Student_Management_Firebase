@@ -46,7 +46,7 @@ const AllStudents = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-4xl text-center flex justify-center items-center h-[75vh]" >Getting All Students' data from Server... Please Wait.....</div>;
   }
 
   if (error) {
@@ -92,7 +92,7 @@ export const ImgMediaCard = ({ stud, handleDelete, id, navigate  }) => {
   const { studentName, studentPhone, studentClassName } = stud;
 
   return (
-    <Card className="border !shadow-2xl hover:!bg-slate-200 border-black !rounded-lg  text-center" sx={{ maxWidth: 345 }}>
+    <Card className="!border !shadow-2xl hover:!bg-slate-200 !p-2 !border-black !rounded-lg  text-center" sx={{ maxWidth: 345 }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {studentName}

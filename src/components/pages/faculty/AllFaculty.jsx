@@ -42,7 +42,9 @@ const AllFaculty = () => {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+   <>
+   <h1 className="text-3xl !mt-12 text-blue-500 text-center font-bold">All Faculty Members:</h1>
+   <div className="grid grid-cols-4 m-16 h-full gap-4">
       {data && data.map((dt) => {
         return (
           <ImgMediaCard
@@ -54,6 +56,7 @@ const AllFaculty = () => {
         );
       })}
     </div>
+    </>
   );
 };
 
@@ -61,7 +64,7 @@ export const ImgMediaCard = ({ dt, navigate, handleDelete }) => {
   const { id, facultyDept, facultyName, facultyPhoneNumber, facultyRegNo } = dt;
 
   return (
-    <Card className="border border-black text-center h-[220px]" sx={{ maxWidth: 345 }}>
+    <Card className="border !shadow-2xl hover:!bg-slate-200 !border-black !p-2 !rounded-lg  text-center h-[220px]" sx={{ maxWidth: 345 }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {facultyName}
