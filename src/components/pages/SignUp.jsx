@@ -101,7 +101,7 @@ const SignUp = () => {
             Fill the form below to Register to{" "}
           </h2>
           <h2 className="font-bold text-xl mb-8 text-blue-600">
-            Student Management System
+          Institute Management System
           </h2>
 
           <div className="flex flex-col gap-6">

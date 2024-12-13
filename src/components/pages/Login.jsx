@@ -97,7 +97,7 @@ const Login = () => {
           {/* Main Heading */}
           <h1 className="text-xl font-bold mb-2">Welcome Back!</h1>
           <h2 className="text-lg mb-2">Please fill in your credentials to log in to </h2>
-          <h2 className="font-bold text-xl mb-8 text-blue-600">Student Management System</h2>
+          <h2 className="font-bold text-xl mb-8 text-blue-600">Institute Management System</h2>
 
           <div className="flex flex-col gap-6">
             {/* Email Field */}
