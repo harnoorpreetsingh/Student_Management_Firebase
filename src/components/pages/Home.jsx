@@ -10,6 +10,13 @@ const Home = () => {
   const navToLogin=()=>{
     navigate("/login")
   }
+  const scroll=()=>{
+    window.scroll({
+      top: document.body.offsetHeight,
+      left: 0, 
+      behavior: 'smooth',
+    });
+  }
   return (
     <div>
       <div
@@ -47,10 +54,12 @@ const Home = () => {
                 interface is designed to be intuitive, so even users with
                 minimal technical experience can get started right away.
               </p>
+    <button onClick={scroll} className="bg-orange-600 border-white border hover:bg-red-500 p-5 text-white font-semibold rounded-xl mt-6">Click here to Begin. </button>
             </div>
           </div>
           </div>
     </div>
+
 
     <div
         className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
@@ -84,8 +93,8 @@ const Home = () => {
               </h1>
               <div className="flex gap-4 text-black mt-6 text-xl">
                 {" "}
-                <button onClick={navToRegister} className="bg-gray-500 p-3 text-black shadow-2xl hover:bg-white hover:p-4 font-bold rounded-xl" >Register</button>
-                <button onClick={navToLogin} className="bg-gray-500 p-3 text-black  shadow-2xl hover:bg-white hover:p-4 font-bold rounded-xl" >Login</button>
+                <button onClick={navToRegister} className="bg-gray-500 p-3 text-black shadow-2xl hover:bg-white  font-bold rounded-xl" >Register</button>
+                <button onClick={navToLogin} className="bg-gray-500 p-3 text-black  shadow-2xl hover:bg-white  font-bold rounded-xl" >Login</button>
               </div>
             </div>
           </div>
