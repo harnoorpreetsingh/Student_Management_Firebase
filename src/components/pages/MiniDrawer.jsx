@@ -101,7 +101,7 @@ export default function MiniDrawer({ user }) {
     signOut(auth)
       .then(() => {
         console.log("Successfully signed out");
-        navigate("/login");
+        navigate("/");
       })
       .catch((error) => {
         console.error("Error signing out:", error);
@@ -191,7 +191,7 @@ export default function MiniDrawer({ user }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        <List sx={{backgroundColor:"#2ce0e5",color:"black"}}>
           {navOptions.map((text) => (
             <ListItem key={text.id} disablePadding sx={{ display: "block" }}>
               <NavLink to={text.path} style={{ textDecoration: "none" }}>
@@ -224,7 +224,7 @@ export default function MiniDrawer({ user }) {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "64px" }}>
+      <Box component="main" sx={{ flexGrow: 1,  marginTop: "" }}>
         <DrawerHeader />
         <Outlet />
       </Box>

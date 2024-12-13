@@ -10,12 +10,10 @@ import UpdateFaculty from "./components/pages/faculty/UpdateFaculty";
 import AddFaculty from "./components/pages/faculty/AddFaculty";
 import SignUp from "./components/pages/SignUp";
 import Login from "./components/pages/Login";
-
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./components/firebase/config";
 import UpdateStudent from "./components/pages/students/UpdateStudent";
 import DashHome from "./components/pages/DashHome";
-import Logout from "./components/pages/Logout";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -59,7 +57,6 @@ function App() {
           <Route path="addfaculty" element={<AddFaculty />} />
           <Route path="allfaculty" element={<AllFaculty />} />
           <Route path="updatefaculty" element={<UpdateFaculty />} />
-          <Route path="logout" element={<Logout />} />
         </Route>
       </Routes>
     </>
