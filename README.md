@@ -1,8 +1,29 @@
-# React + Vite
+# Institute Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Institute Management System**! 🎓
 
-Currently, two official plugins are available:
+This web application helps in managing students, faculty, and courses in an institute. It provides a smooth, secure, and efficient way to track student and faculty details.
+Powered by **React** and **Firebase**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Student Management**: 
+  - Add, update, and delete student details (admission number, name, phone number, class).
+  - View a list of all students in a user-friendly card-based layout.
+  - Data is stored and retrieved from **Firebase Realtime Database**.
+
+- **Faculty Management**:
+  - Add, update, and delete faculty details (name, department, etc.).
+  - Faculty information is also stored in **Firebase Realtime Database**.
+
+- **Authentication**:
+  - Secure login and registration system using **Firebase Authentication**.
+  - Google login integration for easy sign-in.
+
+
+## Installation
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/yourusername/institute-management-system.git
