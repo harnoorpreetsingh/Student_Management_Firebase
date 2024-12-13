@@ -14,7 +14,7 @@ Powered by **React** and **Firebase**.
 
 - **Faculty Management**:
   - Add, update, and delete faculty details (name, department, etc.).
-  - Faculty information is also stored in **Firebase Realtime Database**.
+  - Faculty information is also stored in **Firebase Firestore Database**.
 
 - **Authentication**:
   - Secure login and registration system using **Firebase Authentication**.
