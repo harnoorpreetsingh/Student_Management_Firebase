@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getDatabase, ref, set } from "firebase/database";
 import app from "../../firebase/config"
 import { useNavigate } from "react-router-dom";
+import fm from "/formSt.png"
 
 
 export const AddStudent = () => {
@@ -29,11 +30,16 @@ export const AddStudent = () => {
   };
   return (
     <div>
-      <h1 className="text-2xl font-bold">
+   <div className="grid grid-cols-2 mx-40 h-[75vh] justify-center items-center border border-black my-16 p-4">
+    <div className="img">
+      <img className="!shadow-2xl" src={fm} alt="from icon"  />
+    </div>
+    <div className="from">
+    <h1 className="text-2xl text-blue-500 text-center font-bold">
         Fill the form below to Add Student:{" "}
       </h1>
 
-      <div className="flex items-center justify-center flex-col gap-12 mt-12">
+      <div className="flex  items-center text-center justify-center flex-col gap-12 mt-12">
       <TextField
           id="outlined-number"
           label="Adm No"
@@ -85,13 +91,15 @@ export const AddStudent = () => {
 
         <Button
           variant="outlined"
-          className="hover:bg-blue-600 hover:text-white"
+          className="hover:bg-blue-600 !shadow-2xl !shadow-blue-600 hover:text-white"
           size="large"
           onClick={addStud}
         >
           Add Student
         </Button>
       </div>
+    </div>
+   </div>
     </div>
   );
 };

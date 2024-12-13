@@ -70,7 +70,7 @@ const AllStudents = () => {
   // }
 
   return (
-    <div className="grid grid-cols-4 gap-2 h-full">
+    <div className="grid grid-cols-4 gap-4 m-16 h-full">
       {students &&
         Object.entries(students).map(([key, stud]) => {
           return (
@@ -92,7 +92,7 @@ export const ImgMediaCard = ({ stud, handleDelete, id, navigate  }) => {
   const { studentName, studentPhone, studentClassName } = stud;
 
   return (
-    <Card className="border border-black text-center" sx={{ maxWidth: 345 }}>
+    <Card className="border !shadow-2xl hover:!bg-slate-200 border-black !rounded-lg  text-center" sx={{ maxWidth: 345 }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {studentName}
@@ -102,10 +102,10 @@ export const ImgMediaCard = ({ stud, handleDelete, id, navigate  }) => {
           variant="body2"
           sx={{ color: "text.secondary" }}
         >
-          <h1 className="mb-2">
+          <h1 className="mb-4 mt-6">
             Admission No: <span className="!text-[red]">{id}</span>
           </h1>
-          <h1 className="mb-2">
+          <h1 className="mb-4">
             Class: <span className="!text-[green]">{studentClassName}</span>
           </h1>
           <h1 className="">
@@ -115,7 +115,7 @@ export const ImgMediaCard = ({ stud, handleDelete, id, navigate  }) => {
       </CardContent>
       
       <CardActions>
-        <div className="btns w-[100%] !bg-slate-600- !flex !items-center !justify-center gap-2 mb-[-32px]">
+        <div className="btns w-[100%] !bg-slate-600- !flex !items-center !justify-center gap-2 mb-[-62px]">
           <Button onClick={()=>navigate("/dashboard/updatestudent", {state:[id,stud]})}
             className="!bg-blue-500 !text-white hover:!bg-blue-800"
             size="small"

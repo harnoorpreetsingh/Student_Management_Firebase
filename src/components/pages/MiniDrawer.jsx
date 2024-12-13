@@ -191,7 +191,8 @@ export default function MiniDrawer({ user }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List sx={{backgroundColor:"#2ce0e5",color:"black"}}>
+        {/* <List sx={{backgroundColor:"#83edf0",color:"black"}}> */}
+        <List >
           {navOptions.map((text) => (
             <ListItem key={text.id} disablePadding sx={{ display: "block" }}>
               <NavLink to={text.path} style={{ textDecoration: "none" }}>
