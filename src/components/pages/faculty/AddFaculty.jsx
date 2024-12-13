@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import app from "../../firebase/config";  // Make sure app is correctly imported from your firebase config
+import app from "../../firebase/config"; 
 import fm from "/form2.png"
 
 const AddFaculty = () => {
@@ -64,13 +64,13 @@ const AddFaculty = () => {
     try {
       const docRef = await addDoc(collection(db, "faculty"), {
         facultyName: name,
-        facultyPhoneNumber: number, // Make sure the field names are correct as per your Firestore structure
+        facultyPhoneNumber: number, 
         facultyRegNo: regno,
-        facultyDept: deptName, // Use `deptName` as it's defined in your state
+        facultyDept: deptName, 
       });
 
       console.log("Document written with ID: ", docRef.id);
-      navigate("/dashboard/allfaculty");  // Adjust the path as needed
+      navigate("/dashboard/allfaculty");  
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -78,7 +78,7 @@ const AddFaculty = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 mx-40 h-[75vh] justify-center items-center border border-black my-16 p-4">
+      <div className="grid grid-cols-2 mx-40 h-[80vh] justify-center items-center border border-black my-12 p-6">
       <div>
         <h1 className="text-2xl text-blue-500 text-center font-bold">Add Faculty:</h1>
 

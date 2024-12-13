@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
 import app from "../../firebase/config";
+import st from "/edd.svg"
+
 
 const UpdateFaculty = () => {
   const location = useLocation();
@@ -82,75 +84,80 @@ const UpdateFaculty = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">Update Faculty:</h1>
+    <div className="grid grid-cols-2 mx-40 h-[80vh] justify-center items-center border border-black my-12 p-6" >
+    <div className="form">
+    <h1 className="text-2xl text-blue-500 text-center font-bold mt-16 ">Update Faculty (Reg.No. {regno}):</h1>
 
-      <div className="flex items-center justify-center flex-col gap-12 mt-12">
-        <TextField
-          id="outlined-number"
-          disabled
-          label="Registration No"
-          type="number"
-          value={regno || ""}
-          required
-          onChange={(e) => setRegNo(e.target.value)}
-          helperText={errors.regno}
-          error={!!errors.regno}
-          slotProps={{
-            inputLabel: {
-              shrink: true,
-            },
-          }}
-        />
-        <TextField
-          className="!border !border-black"
-          id="outlined-basic"
-          label="Enter Name"
-          variant="outlined"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          helperText={errors.name}
-          error={!!errors.name}
-        />
+<div className="flex items-center justify-center flex-col gap-12 mt-12">
+  <TextField
+    id="outlined-number"
+    disabled
+    label="Registration No"
+    type="number"
+    value={regno || ""}
+    required
+    onChange={(e) => setRegNo(e.target.value)}
+    helperText={errors.regno}
+    error={!!errors.regno}
+    slotProps={{
+      inputLabel: {
+        shrink: true,
+      },
+    }}
+  />
+  <TextField
+    className="!border !border-black"
+    id="outlined-basic"
+    label="Enter Name"
+    variant="outlined"
+    required
+    value={name}
+    onChange={(e) => setName(e.target.value)}
+    helperText={errors.name}
+    error={!!errors.name}
+  />
 
-        <TextField
-          className="!border !border-black"
-          id="outlined-basic"
-          label="Enter Department"
-          variant="outlined"
-          required
-          value={deptName}
-          onChange={(e) => setDeptName(e.target.value)}
-          helperText={errors.deptName}
-          error={!!errors.deptName}
-        />
+  <TextField
+    className="!border !border-black"
+    id="outlined-basic"
+    label="Enter Department"
+    variant="outlined"
+    required
+    value={deptName}
+    onChange={(e) => setDeptName(e.target.value)}
+    helperText={errors.deptName}
+    error={!!errors.deptName}
+  />
 
-        <TextField
-          id="outlined-number"
-          label="Phone Number"
-          type="number"
-          value={number || ""}
-          required
-          onChange={(e) => setNumber(e.target.value)}
-          helperText={errors.number}
-          error={!!errors.number}
-          slotProps={{
-            inputLabel: {
-              shrink: true,
-            },
-          }}
-        />
+  <TextField
+    id="outlined-number"
+    label="Phone Number"
+    type="number"
+    value={number || ""}
+    required
+    onChange={(e) => setNumber(e.target.value)}
+    helperText={errors.number}
+    error={!!errors.number}
+    slotProps={{
+      inputLabel: {
+        shrink: true,
+      },
+    }}
+  />
 
-        <Button
-          variant="outlined"
-          className="hover:bg-blue-600 hover:text-white"
-          size="large"
-          onClick={updateFaculty}
-        >
-          Update Faculty
-        </Button>
-      </div>
+  <Button
+    variant="outlined"
+    className="hover:bg-blue-600 hover:text-white"
+    size="large"
+    onClick={updateFaculty}
+  >
+    Update Faculty
+  </Button>
+</div>
+    </div>
+    <div className="img">
+      <img src={st} alt="" />
+    </div>
     </div>
   );
 };

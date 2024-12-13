@@ -61,10 +61,10 @@ const DashHome = () => {
                   Let’s make your workflow smoother and more organized.
                 </p>
                 <div className="btns flex mt-12 gap-8 border border-black p-6 justify-between">
-                  <button onClick={toAllStud} className="bg-orange-500 hover:bg-orange-600 hover:p-5 p-4 text-white hover:text-black rounded-lg" >View & Manage All Students</button>
-                  <button onClick={toAddStud} className="bg-green-500 hover:bg-green-600 hover:p-5 p-4 text-white hover:text-black rounded-lg" >Add Student</button>
-                  <button onClick={toAllF} className="bg-blue-500 hover:bg-blue-600 hover:p-5 p-4 text-white hover:text-black rounded-lg" >View & Manage Faculty</button>
-                  <button onClick={toAddF} className="bg-green-500 hover:bg-green-600 hover:p-5 p-4 text-white hover:text-black rounded-lg" >Add Faculty</button>
+                  <button onClick={toAllStud} className="bg-orange-500 hover:bg-orange-600  p-4 text-white hover:text-black rounded-lg" >View & Manage All Students</button>
+                  <button onClick={toAddStud} className="bg-green-500 hover:bg-green-600  p-4 text-white hover:text-black rounded-lg" >Add Student</button>
+                  <button onClick={toAllF} className="bg-blue-500 hover:bg-blue-600  p-4 text-white hover:text-black rounded-lg" >View & Manage Faculty</button>
+                  <button onClick={toAddF} className="bg-green-500 hover:bg-green-600  p-4 text-white hover:text-black rounded-lg" >Add Faculty</button>
                 </div>
               </div>
             </div>

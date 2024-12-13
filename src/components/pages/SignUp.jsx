@@ -1,43 +1,85 @@
 import React, { useState } from "react";
-import { TextField, Button } from "@mui/material";
-import {
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
+import { TextField, Button, CircularProgress } from "@mui/material";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase/config";
 import logo from "../../../src/assets/logo.png";
 import backgroundImage from "/bg.jpg"; // Import the image
-import ggl from "/google.png"
+import ggl from "/google.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const Provider = new GoogleAuthProvider();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   
-  function signInGoogle() {
-    signInWithPopup(auth, Provider);
-  }
-
   // State hooks for managing input fields
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
   const [emailError, setEmailError] = useState(""); // State to handle email validation error
+  const [passwordError, setPasswordError] = useState(""); // State to handle password validation error
+
+  // Google sign-in function
+  function signInGoogle() {
+    signInWithPopup(auth, Provider).then(() => {
+      navigate("/dashboard");
+    }).catch((error) => {
+      console.error("Google sign-in error", error);
+    });
+  }
+
+  // Validate form before submission
+  const validateForm = () => {
+    let isValid = true;
+
+    // Email validation
+    if (!email) {
+      setEmailError("Email is required.");
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("Please enter a valid email.");
+      isValid = false;
+    } else {
+      setEmailError(""); // Clear email error if valid
+    }
+
+    // Password validation
+    if (!password) {
+      setPasswordError("Password is required.");
+      isValid = false;
+    } else if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters.");
+      isValid = false;
+    } else {
+      setPasswordError(""); // Clear password error if valid
+    }
+
+    return isValid;
+  };
 
   // Handler function for registering the user
   const registerUser = () => {
-    // Simple validation for empty fields
-    if (!email || !password) {
-      alert("Please fill in all fields!");
+    // Validate the form before proceeding
+    if (!validateForm()) {
       return;
     }
 
+    setLoading(true); // Show loading spinner
     createUserWithEmailAndPassword(auth, email, password)
-      .then((value) => console.log(value),( navigate("/dashboard")))
-      .catch((err) => console.error(err));
+      .then(() => {
+        console.log("Registration successful!");
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        console.error("Registration error:", err);
+        alert("Registration failed. Please try again.");
+      })
+      .finally(() => {
+        setLoading(false); // Hide loading spinner after operation
+      });
 
-    setEmail(""); // Reset email field
-    setPassword(""); // Reset password field
+    // Reset form fields
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -47,20 +89,20 @@ const SignUp = () => {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <div className="flex items-center justify-end p-24  h-full ">
+      <div className="flex items-center justify-end p-24 h-full">
         {/* Glassmorphism card with backdrop filter */}
-        <div className="bg-white/40 max-w-xl  backdrop-blur-xl backdrop-saturate-150 bg-white/30 border border-white/20 rounded-2xl p-8 shadow-xl max-w-sm w-full text-center">
+        <div className="bg-white/40 max-w-xl backdrop-blur-xl backdrop-saturate-150 bg-white/30 border border-white/20 rounded-2xl p-8 shadow-xl max-w-sm w-full text-center">
           {/* Logo */}
           <img src={logo} className="rounded-3xl w-[60px] mb-4 mx-auto" alt="logo" />
-          
+
           {/* Main Heading */}
-          <h1 className="text-xl font-bold ">Hi There!</h1>
-          <h2 className="text-lg ">
+          <h1 className="text-xl font-bold">Hi There!</h1>
+          <h2 className="text-lg">
             Fill the form below to Register to{" "}
           </h2>
-            <h2 className="font-bold text-xl mb-8 text-blue-600">
-              Student Management System
-            </h2>
+          <h2 className="font-bold text-xl mb-8 text-blue-600">
+            Student Management System
+          </h2>
 
           <div className="flex flex-col gap-6">
             {/* Email Field */}
@@ -88,6 +130,8 @@ const SignUp = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)} // Handle input changes
+              error={!!passwordError} // Trigger error state
+              helperText={passwordError} // Show the error message
               fullWidth
             />
 
@@ -99,8 +143,13 @@ const SignUp = () => {
               onClick={registerUser}
               sx={{ backgroundColor: "#1179ba", color: "white" }}
               fullWidth
+              disabled={loading} // Disable the button when loading
             >
-              Register
+              {loading ? (
+                <CircularProgress size={24} sx={{ color: "white" }} />
+              ) : (
+                "Register"
+              )}
             </Button>
 
             <h1 className="text-2xl font-bold my-1">OR</h1>
@@ -115,12 +164,17 @@ const SignUp = () => {
               fullWidth
             >
               Sign Up With{" "}
-              <img src={ggl} className=" ml-2 w-[90px]" alt="" />
-              {/* <span className="!text-yellow-500 font-bold hover:text-xl ml-1 hover:text-white">
-                Google
-              </span> */}
+              <img src={ggl} className="ml-2 w-[90px]" alt="Google logo" />
             </Button>
-            <h1 className="font-semibold" >Already Registered ? <Link to= "/login"><span className="text-blue-600 font-bold text-lg hover:underline hover:cursor-pointer" >Login.</span> </Link> </h1>
+
+            <h1 className="font-semibold">
+              Already Registered?{" "}
+              <Link to="/login">
+                <span className="text-blue-600 font-bold text-lg hover:underline hover:cursor-pointer">
+                  Login.
+                </span>{" "}
+              </Link>
+            </h1>
           </div>
         </div>
       </div>

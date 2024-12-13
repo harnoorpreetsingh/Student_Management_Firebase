@@ -2,7 +2,8 @@ import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { getDatabase, ref, update } from "firebase/database";
 import app from "../../firebase/config";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"
+import st from "/editSt.svg"
 
 const UpdateStudent = () => {
     const navigate = useNavigate();
@@ -41,8 +42,12 @@ const UpdateStudent = () => {
     };
 
     return (
-        <div>
-            <h1 className="text-2xl font-bold">Fill the form below to Edit Student: </h1>
+        <div className="grid grid-cols-2 mx-40 h-[80vh] justify-center items-center border border-black my-12 p-6" >
+           <div className="img">
+            <img src={st} alt=""  />
+           </div>
+           <div className="form">
+           <h1 className="text-2xl text-blue-500 text-center font-bold mt-16 ">Fill the form below to Edit Admission No. {admno}: </h1>
             <div className="flex items-center justify-center flex-col gap-12 mt-12">
                 <TextField
                     id="outlined-number"
@@ -98,6 +103,7 @@ const UpdateStudent = () => {
                     Update Student
                 </Button>
             </div>
+           </div>
         </div>
     );
 };

@@ -11,12 +11,11 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
-
 const AllStudents = () => {
   const [students, setStudents] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate()  
+  const navigate = useNavigate();
 
   useEffect(() => {
     const db = getDatabase(app);
@@ -46,7 +45,11 @@ const AllStudents = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-4xl text-center flex justify-center items-center h-[75vh]" >Getting All Students' data from Server... Please Wait.....</div>;
+    return (
+      <div className="text-4xl text-center flex justify-center items-center h-[75vh]">
+        Getting All Students' data from Server... Please Wait.....
+      </div>
+    );
   }
 
   if (error) {
@@ -75,7 +78,7 @@ const AllStudents = () => {
         Object.entries(students).map(([key, stud]) => {
           return (
             <ImgMediaCard
-              key={key} // Add key to prevent React warning about lists without keys
+              key={key}
               handleDelete={handleDelete}
               navigate={navigate}
               // moveToEdit={moveToEdit}
@@ -88,11 +91,14 @@ const AllStudents = () => {
   );
 };
 
-export const ImgMediaCard = ({ stud, handleDelete, id, navigate  }) => {
+export const ImgMediaCard = ({ stud, handleDelete, id, navigate }) => {
   const { studentName, studentPhone, studentClassName } = stud;
 
   return (
-    <Card className="!border !shadow-2xl hover:!bg-slate-200 !p-2 !border-black !rounded-lg  text-center" sx={{ maxWidth: 345 }}>
+    <Card
+      className="!border !shadow-2xl hover:!bg-slate-200 !p-2 !border-black !rounded-lg  text-center"
+      sx={{ maxWidth: 345 }}
+    >
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {studentName}
@@ -113,16 +119,18 @@ export const ImgMediaCard = ({ stud, handleDelete, id, navigate  }) => {
           </h1>
         </Typography>
       </CardContent>
-      
+
       <CardActions>
         <div className="btns w-[100%] !bg-slate-600- !flex !items-center !justify-center gap-2 mb-[-62px]">
-          <Button onClick={()=>navigate("/dashboard/updatestudent", {state:[id,stud]})}
+          <Button
+            onClick={() =>
+              navigate("/dashboard/updatestudent", { state: [id, stud] })
+            }
             className="!bg-blue-500 !text-white hover:!bg-blue-800"
             size="small"
           >
             Edit
           </Button>
-
 
           <Button
             onClick={() => handleDelete(id)}

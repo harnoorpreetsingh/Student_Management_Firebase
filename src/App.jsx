@@ -1,5 +1,5 @@
-import  { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import MiniDrawer from "./components/pages/MiniDrawer";
 import { AddStudent } from "./components/pages/students/AddStudent";
 import Home from "./components/pages/Home";
@@ -31,32 +31,38 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  if (user === null) {
-    return (
-      <>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          {/* 404 Route */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </>
-    );
-  }
+  // Redirect user to dashboard if they are logged in
+  const ProtectedRoute = ({ element }) => {
+    return user ? element : <Navigate to="/login" />;
+  };
+
+  const AuthenticatedRoute = ({ element }) => {
+    return user ? <Navigate to="/dashboard" /> : element;
+  };
 
   return (
     <>
-      {/* Dashboard Routes (MiniDrawer layout) */}
       <Routes>
+        {/* Public Routes (for unauthenticated users) */}
+        <Route path="/" element={<Home />} />
+        
+        {/* Protect Login and Register from authenticated users */}
+        <Route path="/login" element={<AuthenticatedRoute element={<Login />} />} />
+        <Route path="/register" element={<AuthenticatedRoute element={<SignUp />} />} />
+        
+        {/* 404 Route */}
+        <Route path="*" element={<NotFound />} />
+
+        {/* Private Routes (for authenticated users) */}
+        {/* <Route path="*" element={<NotFound />} /> */}
         <Route path="/dashboard/*" element={<MiniDrawer user={user} />}>
           <Route index element={<DashHome />} />
-          <Route path="addstudent" element={<AddStudent />} />
-          <Route path="allstudents" element={<AllStudents />} />
-          <Route path="updatestudent" element={<UpdateStudent />} />
-          <Route path="addfaculty" element={<AddFaculty />} />
-          <Route path="allfaculty" element={<AllFaculty />} />
-          <Route path="updatefaculty" element={<UpdateFaculty />} />
+          <Route path="addstudent" element={<ProtectedRoute element={<AddStudent />} />} />
+          <Route path="allstudents" element={<ProtectedRoute element={<AllStudents />} />} />
+          <Route path="updatestudent" element={<ProtectedRoute element={<UpdateStudent />} />} />
+          <Route path="addfaculty" element={<ProtectedRoute element={<AddFaculty />} />} />
+          <Route path="allfaculty" element={<ProtectedRoute element={<AllFaculty />} />} />
+          <Route path="updatefaculty" element={<ProtectedRoute element={<UpdateFaculty />} />} />
         </Route>
       </Routes>
     </>
