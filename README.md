@@ -2,7 +2,7 @@
 
 Welcome to the **Institute Management System**! 🎓
 
-This web application helps in managing students, faculty, and courses in an institute. It provides a smooth, secure, and efficient way to track student and faculty details.
+This web application helps in managing students, faculty in an institute. It provides a smooth, secure, and efficient way to track student and faculty details.
 Powered by **React** and **Firebase**.
 
 ## Features
