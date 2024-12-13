@@ -2,6 +2,8 @@
 
 Welcome to the **Institute Management System**! 🎓
 
+Live Link: https://stalwart-florentine-4123d5.netlify.app/
+
 This web application helps in managing students, faculty in an institute. It provides a smooth, secure, and efficient way to track student and faculty details.
 Powered by **React** and **Firebase**.
 
